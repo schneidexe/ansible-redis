@@ -8,11 +8,12 @@
     - redis_master_name: my-master
     - redis_master_ip: 192.168.50.10
     - redis_port: 6379
-    - redis_pass: schnappi_schnecke
+    #- redis_pass: schnappi_schnecke
     - sentinel_quorum: 2
   roles:
     - redis
     - sentinel
-    #- redis-commander
+    - redis-browser
+    - redis-commander
   tasks:
       - debug: var=ansible_all_ipv4_addresses

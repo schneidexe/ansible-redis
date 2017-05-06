@@ -9,10 +9,7 @@
   register: sentinel_config
 
 - name: Restart sentinel
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: redis-sentinel
+  systemd: service="redis-sentinel.service" state=restarted enabled=yes daemon_reload=yes
   when: sentinel_config.changed
 
 

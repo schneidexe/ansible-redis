@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
     redis1.vm.box = "ubuntu/xenial64"
     redis1.vm.hostname = "redis1"
     redis1.vm.network "private_network", ip: "192.168.50.10", virtualbox__intnet: true
+    redis1.vm.network "forwarded_port", guest: 8081, host: 8081
+    redis1.vm.network "forwarded_port", guest: 8091, host: 8091
     redis1.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.playbook = "playbook.yml"
@@ -17,6 +19,8 @@ Vagrant.configure("2") do |config|
     redis2.vm.box = "ubuntu/xenial64"
     redis2.vm.hostname = "redis2"
     redis2.vm.network "private_network", ip: "192.168.50.11", virtualbox__intnet: true
+    redis2.vm.network "forwarded_port", guest: 8081, host: 8082
+    redis2.vm.network "forwarded_port", guest: 8091, host: 8092
     redis2.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.playbook = "playbook.yml"
@@ -26,6 +30,8 @@ Vagrant.configure("2") do |config|
     redis3.vm.box = "ubuntu/xenial64"
     redis3.vm.hostname = "redis3"
     redis3.vm.network "private_network", ip: "192.168.50.12", virtualbox__intnet: true
+    redis3.vm.network "forwarded_port", guest: 8081, host: 8083
+    redis3.vm.network "forwarded_port", guest: 8091, host: 8093
     redis3.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.playbook = "playbook.yml"

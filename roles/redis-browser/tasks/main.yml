@@ -1,0 +1,15 @@
+---
+
+- name: Install ruby
+  apt:
+    name: ruby
+
+- name: Install redis browser
+  command: gem install redis-browser
+
+- name: Copy systemd unit file
+  copy: src=redis-browser.service dest=/etc/systemd/system/redis-browser.service
+
+- name: Start and enable service
+  systemd: service="redis-browser.service" state=restarted enabled=yes daemon_reload=yes
+

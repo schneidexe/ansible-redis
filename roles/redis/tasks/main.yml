@@ -9,8 +9,5 @@
   register: redis_config
 
 - name: Restart redis
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: redis-server
+  systemd: service="redis-server.service" state=restarted enabled=yes daemon_reload=yes
   when: redis_config.changed

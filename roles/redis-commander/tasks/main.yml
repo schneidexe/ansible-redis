@@ -11,4 +11,14 @@
     state: link
 
 - name: Install redis commander
-  command: npm install -g redis-commander
+  npm:
+    name: redis-commander
+    global: yes
+    state: latest
+
+- name: Copy systemd unit file
+  copy: src=redis-commander.service dest=/etc/systemd/system/redis-commander.service
+
+- name: Start and enable service
+  systemd: service="redis-commander.service" state=restarted enabled=yes daemon_reload=yes
+

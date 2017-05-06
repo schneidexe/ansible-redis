@@ -1,0 +1,7 @@
+[Unit]
+After=redis-server.service
+
+[Service]
+User=redis
+ExecStart=/usr/local/bin/redis-commander
+Restart=on-failure

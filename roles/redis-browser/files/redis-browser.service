@@ -1,0 +1,7 @@
+[Unit]
+After=redis-server.service
+
+[Service]
+User=redis
+ExecStart=/usr/local/bin/redis-browser -B 0.0.0.0 -P 8091
+Restart=on-failure
