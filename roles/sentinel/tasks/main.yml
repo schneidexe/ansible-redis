@@ -1,0 +1,18 @@
+---
+
+- name: Install sentinel
+  apt:
+    name: redis-sentinel
+
+- name: Configure sentinel
+  template: src=sentinel.conf.j2 dest=/etc/redis/sentinel.conf
+  register: sentinel_config
+
+- name: Restart sentinel
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: redis-sentinel
+  when: sentinel_config.changed
+
+

@@ -1,0 +1,14 @@
+---
+
+- name: Install npm
+  apt:
+    name: npm
+
+- name: Fix nodejs
+  file:
+    src: /usr/bin/nodejs
+    dest: /usr/bin/node
+    state: link
+
+- name: Install redis commander
+  command: npm install -g redis-commander

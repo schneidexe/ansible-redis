@@ -1,0 +1,16 @@
+---
+
+- name: Install redis server
+  apt:
+    name: redis-server
+
+- name: Configure redis
+  template: src=redis.conf.j2 dest=/etc/redis/redis.conf
+  register: redis_config
+
+- name: Restart redis
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: redis-server
+  when: redis_config.changed
